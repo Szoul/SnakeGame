@@ -1,7 +1,5 @@
-#verwendete imports
 import random
 
-#verwendete Variablen
 x= 0
 y= 0
 player_position_x = random.randint(0,9)
