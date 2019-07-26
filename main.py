@@ -23,10 +23,12 @@ while coin_position_x == player_position_x or coin_position_x == snaaaaaaaake_x:
         coin_position_y = random.randint (0,39)
     coin_position_x = random.randint(0,9)
 
-#Start-Text Anweisung und Schwierigkeitsgrad auswählen
+#Start-Text Anweisung und Schwierigkeitsgrad auswählen 
 print ("TO WIN THE GAME COLLECT THE MONEY AND REACH THE GOAL BEFORE THE SNAKE GETS YOU")
 print ("CHOOSE A DIFFICULTY")
 difficulty = input ("PRESS 1 TO BE ABLE TO MOVE DIAGONALLY, OTHERWISE PRESS ANY OTHER BUTTON")
+if difficulty.isdigit():
+    difficulty = int(difficulty)
 if difficulty == 1:
     print ("USE wa FOR MOVING TOP LEFT, wd FOR TOP RIGHT, sd FOR BOTTOM RIGHT AND as FOR BOTTOM LEFT")
 
@@ -35,6 +37,15 @@ while True:
     #wenn Spieler das Geld $ erreicht wird das Ende O erstellt (AB UND ZU WENN MAN DEN BEFEHL GIBT AUF DAS $ FELD ZU GEHEN PASSIERT NICHTS MEHR; UNTERSTE MELDUNG IST: DAS FELD;"Use w-a-s-d keys to navigate";"REACH O" - O wird nicht angezeigt auf dem Feld, kein INput möglich (scheint in einem while loop zu stecken, passiert nur wenn difficulty=1))
     if player_position_x == coin_position_x and player_position_y == coin_position_y:
         print ("REACH O")
+        print ("X then Y of goal,player,coin,snake")
+        print (goal_position_x)
+        print (goal_position_y)
+        print (player_position_x)
+        print (player_position_y)
+        print (coin_position_x)
+        print (coin_position_y)
+        print (snaaaaaaaake_x)
+        print (snaaaaaaaake_y)
         coin_position_x = -1
         goal_position_x = random.randint (0,9)
         goal_position_y = random.randint (0,39)
@@ -77,6 +88,19 @@ while True:
     if player_position_x == snaaaaaaaake_x and player_position_y == snaaaaaaaake_y:
         break
 
+    #Bewegung der Schlange S
+    if player_position_x != snaaaaaaaake_x or player_position_y != snaaaaaaaake_y:
+        if (player_position_y - snaaaaaaaake_y) != 0:
+            if (player_position_y - snaaaaaaaake_y) < 0:
+                snaaaaaaaake_y -= 1
+            elif (player_position_y - snaaaaaaaake_y) > 0:
+                snaaaaaaaake_y += 1 
+        elif (player_position_x - snaaaaaaaake_x) != 0:
+            if (player_position_x - snaaaaaaaake_x) < 0:
+                snaaaaaaaake_x -= 1
+            elif (player_position_x - snaaaaaaaake_x) > 0:
+                snaaaaaaaake_x += 1
+
     #Spieler Input für einfaches w-a-s-d (SPIELER KANN DERZEIT NICHT AUF DAS FELD GANZ RECHTS?)
     navigate_player = input ("Use w-a-s-d keys to navigate")
     if navigate_player == "w":
@@ -92,7 +116,7 @@ while True:
         if player_position_y < 40:
             player_position_y += 1
 
-    #Spieler Input für Diagonales bewegen (WIRD DERZEIT ÜBERSPRUNGEN?)
+    #Spieler Input für Diagonales bewegen 
     elif difficulty == 1:
         if (navigate_player == "wa" or navigate_player == "aw"):
             if player_position_x > 0 and player_position_y > 0:
@@ -111,7 +135,7 @@ while True:
             elif player_position_x == 0 and player_position_y > 40:
                 player_position_y += 1
         if (navigate_player == "sd" or navigate_player == "ds"):
-            if player_position_x > 10 and player_position_y > 40:
+            if player_position_x < 10 and player_position_y < 40:
                 player_position_x += 1
                 player_position_y += 1
             elif player_position_x > 0 and player_position_y == 39:
@@ -119,7 +143,7 @@ while True:
             elif player_position_x == 0 and player_position_y > 40:
                 player_position_y += 1
         if (navigate_player == "as" or navigate_player == "sa"):
-            if player_position_x > 10 and player_position_y > 0:
+            if player_position_x < 10 and player_position_y > 0:
                 player_position_x += 1
                 player_position_y -= 1
             elif player_position_x > 10 and player_position_y == 0:
@@ -127,28 +151,23 @@ while True:
             elif player_position_x == 0 and player_position_y > 0:
                 player_position_y -= 1
     
-    #Output bei falscher Eingabe (Schlange S bewegt sich trozdem derzeit)
+    #Output bei falscher Eingabe (Schleife geht nicht bei difficulty = 1)
     else: 
         if difficulty == 1:
             print("ONLY w-a-s-d AND DIAGONAL INPUTS")
         else:
             print ("ONLY w-a-s-d")
 
-    #Bewegung der Schlange S
-    if player_position_x != snaaaaaaaake_x or player_position_y != snaaaaaaaake_y:
-        if (player_position_y - snaaaaaaaake_y) != 0:
-            if (player_position_y - snaaaaaaaake_y) < 0:
-                snaaaaaaaake_y -= 1
-            elif (player_position_y - snaaaaaaaake_y) > 0:
-                snaaaaaaaake_y += 1 
-        elif (player_position_x - snaaaaaaaake_x) != 0:
-            if (player_position_x - snaaaaaaaake_x) < 0:
-                snaaaaaaaake_x -= 1
-            elif (player_position_x - snaaaaaaaake_x) > 0:
-                snaaaaaaaake_x += 1 
-   
+
 #Ende, Gewonnen oder Verloren
 if goal_position_x == -2:
     print ("YOU WON!")
 else:
     print ("YOU LOST")
+
+#Ideen zum Einbauen: 
+#Spiel Wiederholen/Beenden
+#Schlangenbewegung schneller, wenn weiter vom Spieler weg
+#Möglichkeit eines "Doppelsprung" über die schlange drüber
+#Eine zweite/dritte Schlange
+#Etwas Produktives machen
