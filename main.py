@@ -12,6 +12,7 @@ goal_position_x = -1
 goal_position_y = -1
 difficulty = 0
 
+
 # Figuren sollen weit genug auseinander stehen/sich nicht überschneiden
 while abs(player_position_x-snaaaaaaaake_x)<4 or abs(player_position_y-snaaaaaaaake_y)<4:
     player_position_x = random.randint(0,9)
