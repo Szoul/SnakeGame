@@ -55,7 +55,7 @@ while True:
     
     #Gewinnbedingung erfüllt (1)
     if player_position_x == goal_position_x and player_position_y == goal_position_y:
-        goal_position_x = -2
+        goal_position_x = "out of playing field"
 
     #Das Spielfeld
     while x< 10:
@@ -75,14 +75,16 @@ while True:
             else: 
                 print (".", end='')
                 y += 1
-        print (".")
+            if y == 40:
+                print ("")
+        
         x += 1
         y= 0
     x = 0
     y = 0
 
     #Gewinnbedingung(2) und Verlier-Bedingung
-    if goal_position_x == -2:
+    if goal_position_x == "out of playing field":
         break
     if player_position_x == snaaaaaaaake_x and player_position_y == snaaaaaaaake_y:
         break
@@ -100,7 +102,7 @@ while True:
             elif (player_position_x - snaaaaaaaake_x) > 0:
                 snaaaaaaaake_x += 1
 
-    #Spieler Input für einfaches w-a-s-d (SPIELER KANN DERZEIT NICHT AUF DAS FELD GANZ RECHTS?)
+    #Spieler Input für einfaches w-a-s-d 
     navigate_player = input ("Use w-a-s-d keys to navigate")
     if navigate_player == "w":
         if player_position_x > 0:
@@ -112,7 +114,7 @@ while True:
         if player_position_x < 9:
             player_position_x += 1
     elif navigate_player == "d":
-        if player_position_y < 40:
+        if player_position_y < 39:
             player_position_y += 1
 
     #Spieler Input für Diagonales bewegen 
@@ -126,31 +128,31 @@ while True:
             elif player_position_x == 0 and player_position_y > 0:
                 player_position_y -= 1
         if (navigate_player == "wd" or navigate_player == "dw"):
-            if player_position_x > 0 and player_position_y < 40:
+            if player_position_x > 0 and player_position_y < 39:
                 player_position_x -= 1
                 player_position_y += 1
-            elif player_position_x > 0 and player_position_y == 39:
+            elif player_position_x > 0 and player_position_y == 38:
                 player_position_x -= 1
-            elif player_position_x == 0 and player_position_y > 40:
+            elif player_position_x == 0 and player_position_y > 39:
                 player_position_y += 1
         if (navigate_player == "sd" or navigate_player == "ds"):
-            if player_position_x < 10 and player_position_y < 40:
+            if player_position_x < 9 and player_position_y < 39:
                 player_position_x += 1
                 player_position_y += 1
-            elif player_position_x > 0 and player_position_y == 39:
+            elif player_position_x > 0 and player_position_y == 38:
                 player_position_x += 1
-            elif player_position_x == 0 and player_position_y > 40:
+            elif player_position_x == 0 and player_position_y > 39:
                 player_position_y += 1
         if (navigate_player == "as" or navigate_player == "sa"):
-            if player_position_x < 10 and player_position_y > 0:
+            if player_position_x < 9 and player_position_y > 0:
                 player_position_x += 1
                 player_position_y -= 1
-            elif player_position_x > 10 and player_position_y == 0:
+            elif player_position_x > 9 and player_position_y == 0:
                 player_position_x += 1
             elif player_position_x == 0 and player_position_y > 0:
                 player_position_y -= 1
     
-    #Output bei falscher Eingabe (Schleife geht nicht bei difficulty = 1)
+    #Output bei falscher Eingabe 
     else: 
         if difficulty == 1:
             print("ONLY w-a-s-d AND DIAGONAL INPUTS")
@@ -159,7 +161,7 @@ while True:
 
 
 #Ende, Gewonnen oder Verloren
-if goal_position_x == -2:
+if goal_position_x == "out of playing field":
     print ("YOU WON!")
 else:
     print ("YOU LOST")
