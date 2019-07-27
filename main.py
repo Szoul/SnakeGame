@@ -1,7 +1,5 @@
-#verwendete imports
 import random
 
-#verwendete Variablen
 x= 0
 y= 0
 player_position_x = random.randint(0,9)
@@ -164,10 +162,3 @@ if goal_position_x == -2:
     print ("YOU WON!")
 else:
     print ("YOU LOST")
-
-#Ideen zum Einbauen: 
-#Spiel Wiederholen/Beenden
-#Schlangenbewegung schneller, wenn weiter vom Spieler weg
-#Möglichkeit eines "Doppelsprung" über die schlange drüber
-#Eine zweite/dritte Schlange
-#Etwas Produktives machen
