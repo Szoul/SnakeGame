@@ -7,8 +7,8 @@ def rand_0_39():
 
 player_position_x = random.randint(0,9)
 player_position_y = random.randint(0,39)
-snaaaaaaaake_x = [rand_0_9()]
-snaaaaaaaake_y = [rand_0_39()]
+snaaaaaaaake_x = rand_0_9()
+snaaaaaaaake_y = rand_0_39()
 snaaaaaaaake_position_x = []
 snaaaaaaaake_position_y = []
 
@@ -33,8 +33,8 @@ goal_position_x = -1
 goal_position_y = -1
 
 
-
-
+i = 0
+ 
 for x in range(10):
     for y in range(40):
         if x==player_position_x and y==player_position_y:
@@ -43,8 +43,9 @@ for x in range(10):
             print ("O", end='')
         elif x==coin_position_x and y==coin_position_y:
             print ("$", end='')
-        elif x in snaaaaaaaake_position_x and y in snaaaaaaaake_position_y:
-            print ("S", end '')
+        elif x == snaaaaaaaake_position_x[i] and y == snaaaaaaaake_position_y[i]:
+            print ("S", end= '')
+            i += 1
         else: 
             print (".", end='')
         if y == 39:
